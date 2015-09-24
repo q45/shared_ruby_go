@@ -18,6 +18,11 @@ type Response struct {
 	Status int    `json:"status"`
 	Err    string `json:"error"`
 	Uri    string `json:"uri"`
+	Title  string `json:"title"`
+}
+
+type Title struct {
+	TheTitle string `json:"title"`
 }
 
 //export add
@@ -57,6 +62,12 @@ func makeRequest(uri string) *Response {
 		return &Response{Status: resp.StatusCode, Err: err.Error()}
 	}
 	fmt.Println(string(body))
+	t := new(Title)
+	err = json.Unmarshal(body, &t)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("Title", t.TheTitle)
 
 	return &Response{Uri: uri, Body: string(body), Status: resp.StatusCode}
 }

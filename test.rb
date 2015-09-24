@@ -1,6 +1,7 @@
 require 'ffi'
 require 'json'
 require 'scatter'
+require 'benchmark'
 
 module Scatter
 	def self.request(uris)
@@ -31,3 +32,10 @@ urls = %w{http://ruby-lang.org http://rubygems.org http://golang.org}
 # puts Sum.fibonacci(10)
 
 puts Scatter.request(urls)
+
+# Benchmark.bmbm do |r|
+# 	r.report("3 requests") do 
+# 		Scatter.request(urls.shuffle.take(3))
+# 	end
+# end
+
