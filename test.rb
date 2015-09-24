@@ -1,6 +1,5 @@
 require 'ffi'
 require 'json'
-require 'scatter'
 
 module Scatter
 	def self.request(uris)
