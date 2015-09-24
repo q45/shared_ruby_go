@@ -9,25 +9,12 @@ module Scatter
 
 	module ScatterBinding
 		extend FFI::Library
-		ffi_lib File.expand_path("./libscatter.so", File.dirname(__FILE__))
+		ffi_lib File.expand_path("./scraper.so", File.dirname(__FILE__))
 		attach_function :scatter_request, [:string], :string
 	end
 end
 
 
+urls = %w{http://ruby-lang.org http://rubygems.org http://golang.org http://espn.go.com}
 
-# module Sum
-# 	extend FFI::Library
-# 	ffi_lib './libsum.so'
-# 	# ffi_lib '/Users/q/go/src/github.com/q45/libsum/libsum.so'
-# 	attach_function :add, [:int, :int], :int
-# 	attach_function :fibonacci, [:int], :int
-# end
-
-urls = %w{http://ruby-lang.org http://rubygems.org http://golang.org}
-
-# puts Sum.add(15, 27)
-
-# puts Sum.fibonacci(10)
-
-puts Scatter.request(urls)
+Scatter.request(urls)
